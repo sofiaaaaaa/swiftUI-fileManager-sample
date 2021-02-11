@@ -1,55 +1,52 @@
 //
-//  ContentView.swift
+//  FileView.swift
 //  Memong
 //
-//  Created by punky on 2020/12/26.
+//  Created by punky on 2020/12/28.
 //
 
 import SwiftUI
 
-struct ContentView: View {
-    @State var folders: [String] = []
-    @State private var folderName: String = ""
+struct FileView: View {
+    var folderName: String
+    @State var fileList: [String] = []
+    @State private var fileName: String = ""
     @State private var isEditing = false
     @State private var showingAlert = false
     @State private var activeAlert: ActiveAlert = .showingAlertDuplicated
-    @State private var selectionListIndex: Int? = 0
+    @State private var selectionListIndex2: Int? = 0
     @State private var showingAlertDelete = false
+
     
     var body: some View {
+        
         NavigationView {
+            
             List {
-                ForEach(folders.indices , id: \.self) { index in
-                    if folders[index] == "X" {
-                        Text("Folder List")
+                ForEach(fileList.indices , id: \.self) { index in
+                    
+                    if fileList[index] == "X" {
+                        Text("File List")
                             .frame(width: 0, height: 0)
                     } else {
-                        
-                        NavigationLink(destination: FileView(folderName: folders[index]), tag: index, selection: $selectionListIndex)
-                        {
-                            
-                            if folders[index] == "" {
+                        NavigationLink(destination: DetailView(fileName: fileList[index], folderName: folderName), tag: index , selection: $selectionListIndex2) {
+                            if fileList[index] == "" {
                                 HStack {
                                     TextField(
-                                        "New Folder",
-                                        text: $folderName
+                                        "New File",
+                                        text: $fileName
                                     ) { isEditing in
                                         self.isEditing = isEditing
                                     } onCommit: {
-                                        print("commit new Folder to \(self.folderName)")
+                                        print("commit new file to \(self.fileName)")
                                     }
-//                                    .frame(width: 100.0, height: 100.0)
                                     .textFieldStyle(RoundedBorderTextFieldStyle())
                                     .focusable()
+                                    .padding(.trailing, 10)
                                     .controlSize(/*@START_MENU_TOKEN@*/.large/*@END_MENU_TOKEN@*/)
-//                                    .lineLimit(nil)
-//                                    .onAppear(perform: {
-//                                        self.input = ""
-//                                    })
 
                                     
-                                    
-                                    Button(action: createFolder) {
+                                    Button(action: createFile) {
                                         Label("", systemImage: "plus")
                                     }
                                     .buttonStyle(BorderlessButtonStyle())
@@ -57,68 +54,63 @@ struct ContentView: View {
                                         
                                         switch activeAlert {
                                             case .showingAlertDuplicated:
-                                                return  Alert(title: Text("Error"), message: Text("Duplicated folder name."))
+                                                return  Alert(title: Text("Error"), message: Text("Duplicated file name."))
                                             case .showingAlerteError:
                                                 return  Alert(title: Text("Error"), message: Text("Sorry, We are not working now. Try again."))
                                         }
-                                        
-                                        
                                     }
-                                    .padding(0)
                                     .help(Text("Save"))
                                     
                                     Button(action: {
-                                        self.folders.removeLast()
+                                        self.fileList.removeLast()
                                     }) {
                                         Label("", systemImage: "clear")
                                     }
                                     .buttonStyle(BorderlessButtonStyle())
-                                    .padding(0)
                                     .help(Text("Cancel"))
-                                    
                                 }
-                                
                             } else {
-                                Text("\(folders[index])")
+                                Text("\(fileList[index])")
                             }
                         }
-                        
                     }
                 }
+                .animation(.default)
             }
+            .listStyle(SidebarListStyle())
             .toolbar {
                 Button(action: addItem) {
-                    Label("Add Item", systemImage: "plus")
+                    Label("Write File", systemImage: "square.and.pencil")
                 }
-                .help(Text("Add Folder"))
+                .help(Text("Write File"))
                 
                 Button(action: clickTrash) {
-                    Label("Delete Item", systemImage: "trash")
+                    Label("Delete File", systemImage: "trash")
                 }
-                .help(Text("Delete Folder"))
+                .help(Text("Delete File"))
                 .alert(isPresented: $showingAlertDelete) {
                     return Alert(
                         title: Text("Are you sure?"),
                         message: Text("Do you want to delete?"),
-                        primaryButton: .destructive(Text("Yes"), action: deleteItem),
+                        primaryButton: .destructive(Text("Yes"), action: removeItem),
                         secondaryButton: .cancel(Text("No"), action: {})
                       )
                 }
             }
-            .listStyle(SidebarListStyle())
             .frame(minWidth: 250,idealWidth: 260,maxWidth: 300, maxHeight: .infinity )
+
             
         }
 //        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onAppear() {
-            self.folders = CustomFileManager.getFolderList() ?? []
+            self.fileList = CustomFileManager.getFileList(folderName) ?? []
         }
         
     }
     
-    // Add new folder item
+    // Add a new File
     func addItem() {
-        self.folders.append("")
+        self.fileList.append("")
     }
     
     // Click trash button
@@ -126,51 +118,54 @@ struct ContentView: View {
         self.showingAlertDelete = true
     }
     
-    // Delete folder
-    func deleteItem() {
-        if self.folders.count == 1 {
+    // Remove a file
+    func removeItem() {
+        
+        if self.fileList.count == 1 {
             return
         }
         
-        if let selectionIndex = self.selectionListIndex, selectionIndex == 0 {
+        if let selectionIndex = self.selectionListIndex2, selectionIndex == 0 {
             return
         }
         
-        let selectionIndex = self.selectionListIndex ?? 0
-        if CustomFileManager.removeFolder(of: folderName) {
-            self.folders.remove(at: selectionIndex)
+        if let selectionIndex = self.selectionListIndex2, CustomFileManager.removeFile(of: fileList[selectionIndex], in: folderName) {
+            print("sucess~")
+            let result = fileList.remove(at: selectionIndex)
+            print("delete~ \(result) \(fileList)")
         }
     }
     
-    func createFolder() {
-        if folderName == "" {
+    // Create file
+    func createFile() {
+        if fileName == "" {
             return
         }
         
-        let resultCode = CustomFileManager.createFolder(folderName)
+        let resultCode: (Int, String) = CustomFileManager.createNewFile(of: fileName, in: folderName)
         
-        if resultCode == 1 {
-            print("has created new Folder \(self.folderName)")
-            self.folders.removeLast()
-            self.folders.append(self.folderName)
-            self.folderName = ""
-        } else if resultCode == 2 {
+        if resultCode.0 == 1 {
+            print("has created new Folder \(self.fileName)")
+            self.fileList.removeLast()
+            self.fileList.append(resultCode.1)
+            self.fileName = ""
+            print("content \(resultCode.1)")
+        } else if resultCode.0 == 2 {
             self.showingAlert = true
             self.activeAlert = ActiveAlert.showingAlertDuplicated
+            
         } else {
             self.showingAlert = true
             self.activeAlert = ActiveAlert.showingAlerteError
-            self.folders.removeLast()
+            self.fileList.removeLast()
             
         }
+        
     }
-    
-    
 }
 
-
-struct ContentView_Previews: PreviewProvider {
+struct FileView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        FileView(folderName: "ccc")
     }
 }

@@ -7,20 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D19E37025A43407004B8A4E /* TestListDelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D19E36F25A43407004B8A4E /* TestListDelete.swift */; };
 		3D8AE6D42596D6B400B53742 /* MemongApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8AE6D32596D6B400B53742 /* MemongApp.swift */; };
 		3D8AE6D62596D6B400B53742 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8AE6D52596D6B400B53742 /* ContentView.swift */; };
 		3D8AE6D82596D6B400B53742 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D8AE6D72596D6B400B53742 /* Assets.xcassets */; };
 		3D8AE6DB2596D6B400B53742 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D8AE6DA2596D6B400B53742 /* Preview Assets.xcassets */; };
+		3D8AE6E72596DA4D00B53742 /* MyFileManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8AE6E62596DA4D00B53742 /* MyFileManagement.swift */; };
+		3D8AE6EB2596E0D100B53742 /* TestAddList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8AE6EA2596E0D100B53742 /* TestAddList.swift */; };
+		3D8AE6EE2596E1CC00B53742 /* TestAddListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8AE6ED2596E1CC00B53742 /* TestAddListItem.swift */; };
+		3DFDEEC525987C7E00E52429 /* CustomFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFDEEC425987C7E00E52429 /* CustomFileManager.swift */; };
+		3DFDEEC9259A217F00E52429 /* FileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFDEEC8259A217F00E52429 /* FileView.swift */; };
+		3DFDEECC259A221200E52429 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFDEECB259A221200E52429 /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D02D79225A8A3D40090A4ED /* Memong.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Memong.entitlements; sourceTree = "<group>"; };
+		3D19E36F25A43407004B8A4E /* TestListDelete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestListDelete.swift; sourceTree = "<group>"; };
 		3D8AE6D02596D6B400B53742 /* Memong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memong.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D8AE6D32596D6B400B53742 /* MemongApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemongApp.swift; sourceTree = "<group>"; };
 		3D8AE6D52596D6B400B53742 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3D8AE6D72596D6B400B53742 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3D8AE6DA2596D6B400B53742 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3D8AE6DC2596D6B400B53742 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3D8AE6DD2596D6B400B53742 /* Memong.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Memong.entitlements; sourceTree = "<group>"; };
+		3D8AE6E62596DA4D00B53742 /* MyFileManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFileManagement.swift; sourceTree = "<group>"; };
+		3D8AE6EA2596E0D100B53742 /* TestAddList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAddList.swift; sourceTree = "<group>"; };
+		3D8AE6ED2596E1CC00B53742 /* TestAddListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAddListItem.swift; sourceTree = "<group>"; };
+		3DFDEEC425987C7E00E52429 /* CustomFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFileManager.swift; sourceTree = "<group>"; };
+		3DFDEEC8259A217F00E52429 /* FileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileView.swift; sourceTree = "<group>"; };
+		3DFDEECB259A221200E52429 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,11 +67,17 @@
 		3D8AE6D22596D6B400B53742 /* Memong */ = {
 			isa = PBXGroup;
 			children = (
+				3D8AE6E52596DA2200B53742 /* common */,
 				3D8AE6D32596D6B400B53742 /* MemongApp.swift */,
 				3D8AE6D52596D6B400B53742 /* ContentView.swift */,
+				3DFDEEC8259A217F00E52429 /* FileView.swift */,
+				3DFDEECB259A221200E52429 /* DetailView.swift */,
+				3D8AE6EA2596E0D100B53742 /* TestAddList.swift */,
+				3D8AE6ED2596E1CC00B53742 /* TestAddListItem.swift */,
+				3D19E36F25A43407004B8A4E /* TestListDelete.swift */,
+				3D02D79225A8A3D40090A4ED /* Memong.entitlements */,
 				3D8AE6D72596D6B400B53742 /* Assets.xcassets */,
 				3D8AE6DC2596D6B400B53742 /* Info.plist */,
-				3D8AE6DD2596D6B400B53742 /* Memong.entitlements */,
 				3D8AE6D92596D6B400B53742 /* Preview Content */,
 			);
 			path = Memong;
@@ -69,6 +89,15 @@
 				3D8AE6DA2596D6B400B53742 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		3D8AE6E52596DA2200B53742 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				3D8AE6E62596DA4D00B53742 /* MyFileManagement.swift */,
+				3DFDEEC425987C7E00E52429 /* CustomFileManager.swift */,
+			);
+			path = common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,8 +169,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DFDEEC525987C7E00E52429 /* CustomFileManager.swift in Sources */,
+				3DFDEECC259A221200E52429 /* DetailView.swift in Sources */,
 				3D8AE6D62596D6B400B53742 /* ContentView.swift in Sources */,
+				3D8AE6EB2596E0D100B53742 /* TestAddList.swift in Sources */,
+				3D19E37025A43407004B8A4E /* TestListDelete.swift in Sources */,
+				3D8AE6EE2596E1CC00B53742 /* TestAddListItem.swift in Sources */,
+				3DFDEEC9259A217F00E52429 /* FileView.swift in Sources */,
 				3D8AE6D42596D6B400B53742 /* MemongApp.swift in Sources */,
+				3D8AE6E72596DA4D00B53742 /* MyFileManagement.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,18 +305,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Memong/Memong.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Memong/Preview Content\"";
 				DEVELOPMENT_TEAM = DM5TANDD6U;
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Memong/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.softSoft.Memong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -293,18 +331,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Memong/Memong.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Memong/Preview Content\"";
 				DEVELOPMENT_TEAM = DM5TANDD6U;
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Memong/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.softSoft.Memong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
